@@ -1,0 +1,348 @@
+/* Fonts */
+@font-face {
+    font-family: 'Ubuntu';
+    src: url('../fonts/Ubuntu/Ubuntu-Bold.eot');
+    src: url('../fonts/Ubuntu-Bold.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Ubuntu-Bold.woff2') format('woff2'),
+        url('../fonts/Ubuntu-Bold.woff') format('woff'),
+        url('../fonts/Ubuntu-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Ubuntu';
+    src: url('../fonts/Ubuntu-BoldItalic.eot');
+    src: url('../fonts/Ubuntu-BoldItalic.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Ubuntu-BoldItalic.woff2') format('woff2'),
+        url('../fonts/Ubuntu-BoldItalic.woff') format('woff'),
+        url('../fonts/Ubuntu-BoldItalic.ttf') format('truetype');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Ubuntu';
+    src: url('../fonts/Ubuntu-Italic.eot');
+    src: url('../fonts/Ubuntu-Italic.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Ubuntu-Italic.woff2') format('woff2'),
+        url('../fonts/Ubuntu-Italic.woff') format('woff'),
+        url('../fonts/Ubuntu-Italic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Ubuntu';
+    src: url('../fonts/Ubuntu-LightItalic.eot');
+    src: url('../fonts/Ubuntu-LightItalic.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Ubuntu-LightItalic.woff2') format('woff2'),
+        url('../fonts/Ubuntu-LightItalic.woff') format('woff'),
+        url('../fonts/Ubuntu-LightItalic.ttf') format('truetype');
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Ubuntu';
+    src: url('../fonts/Ubuntu-MediumItalic.eot');
+    src: url('../fonts/Ubuntu-MediumItalic.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Ubuntu-MediumItalic.woff2') format('woff2'),
+        url('../fonts/Ubuntu-MediumItalic.woff') format('woff'),
+        url('../fonts/Ubuntu-MediumItalic.ttf') format('truetype');
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Ubuntu';
+    src: url('../fonts/Ubuntu-Medium.eot');
+    src: url('../fonts/Ubuntu-Medium.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Ubuntu-Medium.woff2') format('woff2'),
+        url('../fonts/Ubuntu-Medium.woff') format('woff'),
+        url('../fonts/Ubuntu-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Ubuntu';
+    src: url('../fonts/Ubuntu-Light.eot');
+    src: url('../fonts/Ubuntu-Light.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Ubuntu-Light.woff2') format('woff2'),
+        url('../fonts/Ubuntu-Light.woff') format('woff'),
+        url('../fonts/Ubuntu-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Ubuntu';
+    src: url('../fonts/Ubuntu-Regular.eot');
+    src: url('../fonts/Ubuntu-Regular.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Ubuntu-Regular.woff2') format('woff2'),
+        url('../fonts/Ubuntu-Regular.woff') format('woff'),
+        url('../fonts/Ubuntu-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+body {
+    background-color: beige;
+    font-family: 'Ubuntu';
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    height: 80px;
+    color: black;
+    border-bottom: 1px solid black;
+}
+
+nav a {
+    color: black;
+    text-decoration: none;
+}
+
+.logo {
+    margin-top: 10px;
+    margin-left: 100px;
+}
+
+.logo a {
+    font-size: 40px;
+}
+
+.about, .home {
+    font-size: large;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+  
+.tooltip_text {
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    transform: translateY(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 6px 10px;
+    border-radius: 4px;
+    white-space: nowrap;
+    font-size: 14px;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s;
+    z-index: 1;
+}
+
+.tooltip_text::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    transform: translateY(-50%);
+    border-width: 6px;
+    border-style: solid;
+    border-color: transparent transparent transparent #333;
+}
+
+.tooltip, .tooltip_text {
+    opacity: 1;
+    visibility: visible;
+}
+
+.register {
+    margin-top: 10px;
+    margin-right: 85px;
+}
+
+.nav_item {
+    display: inline;
+    font-size: 17px;
+    padding: 10px;
+}
+
+.log_btn, .sign_btn {
+    border: 2px solid black;
+    border-radius: 50px;
+    padding: 10px;
+}
+
+.log_btn:hover {
+    background-color: black;
+    color: white;
+    transition: ease-in 0.3s;
+}
+
+.sign_btn {
+    background-color: black;
+    color: white;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    gap: 50px;
+    border-bottom: 1px solid black;
+}
+
+footer p {
+    margin-top: 130px;
+    font-size: 20px;
+}
+
+.icons {
+    display: flex;
+    gap: 15px;
+    margin-top: 110px;
+    margin-right: 100px;
+}
+
+.icons a {
+    color: green;
+    text-decoration: none;
+    font-size: 30px;
+    padding: 7px;
+    border: 1px solid black;
+    transition: ease 0.5s;
+}
+
+.icons a:hover {
+    transform: translateY(-5px);
+}
+
+.icons a:active {
+    background-color: rgba(0, 128, 0, 0.743);
+}
+
+@media screen and (width: 1024px) {
+    nav {
+        width: 1024px;
+    }
+
+    footer {
+        width: 1024px;
+        height: 30px;
+        margin-top: 130px;
+    }
+}
+
+@media screen and (width: 768px) {
+    nav {
+        align-items: center;
+        width: 768px;
+    }
+
+    .logo {
+        margin-left: 30px;
+    }
+
+    .register {
+        margin-left: 190px;
+    }
+
+    .nav_items {
+        display: flex;
+    }
+
+    .nav_item {
+        padding: 8px;
+    }
+
+    footer {
+        width: 768px;
+    }
+    
+    .icons a {
+        font-size: 25px;
+        padding: 6px;
+    }
+}
+
+@media screen and (max-width: 426px) {
+    nav {
+        align-items: center;
+        width: 425px;
+        height: 60px;
+        color: black;
+        padding-bottom: 10px;
+    }
+    
+    .logo {
+        margin-left: 10px;
+    }
+
+    .logo a {
+        font-size: 25px;
+    }
+
+    .tooltip_text {
+        display: none;
+    }
+
+    .register {
+        margin-left: 10px;
+    }
+
+    .nav_items {
+        display: flex;
+    }
+
+    .nav_item {
+        padding: 5px;
+    }
+
+    .nav_item a {
+        font-size: 15px;
+    }
+
+    .log_btn, .sign_btn {
+        padding: 5px;
+    }
+
+    footer {
+        justify-content: space-around;
+        width: 425px;
+        height: 40px;
+        gap: 0;
+        margin-top: 10px;
+    }
+    
+    footer p {
+        margin-top: 140px;
+        font-size: 17px;
+    }
+    
+    .icons {
+        display: flex;
+        gap: 15px;
+        margin-top: 120px;
+        margin-right: 0;
+    }
+    
+    .icons a {
+        font-size: 25px;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    footer {
+        margin-top: 100px;
+    }
+}
