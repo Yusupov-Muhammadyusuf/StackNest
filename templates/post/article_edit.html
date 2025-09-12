@@ -1,0 +1,53 @@
+{% load static %}
+{% load widget_tweaks %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="{% static 'css/article_edit.css' %}">
+    <title>StackNest</title>
+</head>
+<body>
+
+    <nav>
+        <p>Improve your article better</p>
+    </nav>
+
+    <h1>Edit Post</h1>
+    <div class="wrapper">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+    
+            <label for="title">Title</label>
+            {{ form.title|add_class:"form_input" }}
+    
+            <div class="ckeditor">
+                {{ form.body }}
+            </div>
+            {{ form.media }}
+
+            {{ form.photo|add_class:"photo" }}
+            <span>Change a picture</span>
+
+            <button type="submit" class="btn btn-success ml-2">Save</button>
+        </form>
+    </div>
+    
+    <footer>
+        <div class="back">
+            <a href="{% url 'article_list' user.username %}">
+                <i class="bi bi-box-arrow-left"></i>
+            </a>
+            <span>Go profile</span>
+        </div>
+        <ul>
+            <li class="footer_item"><a href="{% url 'about' %}">About</a></li>
+            <li class="footer_item"><a href="#">Rules</a></li>
+        </ul>
+    </footer>
+    
+</body>
+</html>
