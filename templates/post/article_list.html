@@ -1,0 +1,66 @@
+{% extends 'profile.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/article_list.css' %}">
+{% endblock extra_css %}
+
+{% block content %}
+    {% for article in object_list %}
+    <div class="card">
+        <div class="card_wrapper">
+            <div class="card_header">
+                {% if user.profile.image %}
+                    <a href="{% url 'article_list' user.username %}"></a>
+                    <img src="{{ user.profile.image.url }}" alt="UserPhoto" class="card_photo">
+                    </a>
+                {% else %}
+                    <a href="{% url 'article_list' user.username %}">
+                        <img src="{% static 'images/StackNest.png' %}" alt="UserPhoto" class="card_photo">
+                    </a>
+                {% endif %}
+                <a href="{% url 'article_list' user.username %}">{{ user.username }}</a>
+                <span class="date_span"><p>{{ article.date }}</p></span>
+            </div>
+            {% if user.is_authenticated %}
+                <div class="card_title">
+                    <a href="{% url 'article_detail' article.pk %}">{{ article.title }}</a>
+                </div>
+                <div class="card_body">
+                    <p><a href="{% url 'article_detail' article.pk %}">{{ article.body|safe|truncatechars:130 }}</a></p>
+                </div>
+                </div>
+                <div class="card_image">
+                    {% if article.photo %}
+                        <a href="{% url 'article_detail' article.pk %}">
+                            <img src="{{ article.photo.url }}" alt="ArticlePhoto" class="card_left_image">
+                        </a>
+                    {% else %}
+                        <a href="{% url 'article_detail' article.pk %}">
+                            <img src="{% static 'images/StackNest.png' %}" alt="ArticlePhoto" class="card_default_image">
+                        </a>
+                    {% endif %}
+                </div>
+            {% else %}
+                <div class="card_title">
+                    <a href="{% url 'login' %}">{{ article.title }}</a>
+                </div>
+                <div class="card_body">
+                    <p><a href="{% url 'login' %}">{{ article.body|safe|truncatechars:130 }}</a></p>
+                </div>
+                </div>
+                <div class="card_image">
+                    {% if article.photo %}
+                        <a href="{% url 'login' %}">
+                            <img src="{{ article.photo.url }}" alt="ArticlePhoto" class="card_left_image">
+                        </a>
+                    {% else %}
+                        <a href="{% url 'login' %}">
+                            <img src="{% static 'images/StackNest.png' %}" alt="ArticlePhoto" class="card_default_image">
+                        </a>
+                    {% endif %}
+                </div>
+            {% endif %}
+    </div>
+    {% endfor %}
+{% endblock content %}
