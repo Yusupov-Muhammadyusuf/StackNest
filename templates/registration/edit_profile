@@ -1,0 +1,45 @@
+{% extends 'profile.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/profile_edit.css' %}">
+{% endblock extra_css %}
+
+{% block content %}
+    <h1 class="edit_text">Edit profile</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <input type="file" name="image" id="image_file">
+
+        <label for="bio">Bio</label>
+        <textarea name="about" id="bio"></textarea>
+
+        <div class="first">
+            <span><i class="bi bi-geo-alt"></i></span>
+            <input type="text" name="location" id="loc" placeholder="Location">
+        </div>
+
+        <div class="second">
+            <span><i class="bi bi-envelope"></i></span>
+            <input type="email" name="email" id="email_address" placeholder="Email address">
+        </div>
+
+        <div class="thrid">
+            <span><i class="bi bi-link-45deg"></i></span>
+            <input type="url" pattern="https://.*" name="link_1" id="social_link" placeholder="Link to social profile 1">
+        </div>
+
+        <div class="fourth">
+            <span><i class="bi bi-link-45deg"></i></span>
+            <input type="url" pattern="https://.*" name="link_2" id="social_link" placeholder="Link to social profile 2">
+        </div>
+
+        <div class="fifth">
+            <span><i class="bi bi-link-45deg"></i></span>
+            <input type="url" pattern="https://.*" name="link_3" id="social_link" placeholder="Link to social profile 3">
+        </div>
+
+        <button type="submit" class="save_btn">Save</button>
+    </form>
+{% endblock content %}
