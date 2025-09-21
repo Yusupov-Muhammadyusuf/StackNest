@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    {% block extra_css %}{% endblock extra_css %}
+    <title>StackNest</title>
+</head>
+<body id="vanta_bg">
+    
+    <nav>
+        <div class="logo">
+            <a href="{% url 'base' %}">StackNest</a>
+        </div>
+        <div class="register">
+            <ul class="nav_items">
+                {% if not user.is_authenticated %}
+                    <li class="nav_item tooltip">
+                        <a href="{% url 'about' %}" class="about">About</a>
+                        <span class="tooltip_text">Learn more here</span>
+                    </li>
+                    <li class="nav_item"><a href="{% url 'profile' %}" class="home">Profile</a></li>
+                    <li class="nav_item"><a href="{% url 'login' %}" class="log_btn">Login</a></li>
+                    <li class="nav_item"><a href="{% url 'signup' %}" class="sign_btn">Signup</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        {% block content %}
+        {% endblock content %}
+    </main>
+
+    <footer>
+        <div class="copy">
+            <p>&copy; 2025 StackNest.</p>
+        </div>
+        <div class="icons">
+            <a href="https://github.com/Yusupov-Muhammadyusuf" target="_blank">
+                <i class="bi bi-github"></i>
+            </a>
+            <a href="https://t.me/Muhammadyusuf_Yusupov" target="_blank">
+                <i class="bi bi-telegram"></i>
+            </a>
+            <a href="mailto:muhammadyusuf.yusupov201@gmail.com" target="_blank">
+                <i class="bi bi-envelope"></i>
+            </a>
+        </div>
+    </footer>
+
+    <script src="{% static 'js/base.js' %}"></script>
+    
+</body>
+</html>
