@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock extra_css %}
+
+{% block content %}
+    <div class="welcome_word">
+        <h1>
+            <span>Read &</span><br>
+            Write your thoughts<br>
+        </h1>
+        <p>Create your ideas with perfection</p>
+        {% if user.is_authenticated %}
+            <a href="{% url 'article_new' %}">
+                <button type="button">Start writing</button>
+            </a>
+        {% else %}
+            <a href="{% url 'login' %}">
+                <button type="button">Start writing</button>
+            </a>
+        {% endif %}
+    </div>
+    <div class="welcome_picture">
+        <img src="{% static 'images/Global.avif' %}" alt="Global">
+    </div>
+{% endblock content %}
