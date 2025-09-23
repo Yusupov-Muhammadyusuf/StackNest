@@ -1,0 +1,111 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/about.css' %}">
+    <title>StackNest | About</title>
+</head>
+<body>
+
+  <nav>
+    <div class="logo">
+      <h1><a href="{% url 'profile' %}" class="brend">StackNest</a></h1>
+    </div>
+    <div class="reg_buttons">
+        {% if not user.is_authenticated %}
+          <a href="{% url 'login' %}">
+            <button type="button" class="login">Login</button>
+          </a>
+          <a href="{% url 'signup' %}">
+            <button type="button" class="signup">Signup</button>
+          </a>
+          {% else %}
+          <ul class="nav_items">
+            <li class="nav_item">
+              <a href="{% url 'profile' %}">Profile</a>
+            </li>
+            {% if user.is_authneticated %}
+              <li class="nav_item">
+                <a href="{% url 'article_list' user.username %}">Articles</a>
+              </li>
+            {% else %}
+              <li class="nav_item">
+                <a href="{% url 'login' %}">Articles</a>
+              </li>
+            {% endif %}
+          </ul>
+        {% endif %}
+    </div>
+  </nav>
+  
+  <div class="first" data-aos="zoom-in">
+    <h1 class="text">About Us - StackNest</h1>
+    <p class="summary">
+      StackNest is a modern blog platform where ideas, stories, and knowledge come together.<br>
+      Here, everyone has the freedom to express their thoughts, learn from others' experiences, and contribute something valuable to the community.<br>
+      We believe that every person has a voice, a story to share, and a lesson worth passing on.<br><br>
+    </p>
+  </div>
+
+  <div class="second" data-aos="zoom-in">
+    <h1 class="text">Why StackNest?</h1>
+    <p class="summary">In today’s internet space, real insight and meaningful content are becoming harder to find. StackNest was created to fill that gap:<br><br></p>
+    <ul>
+      <li>For writers – it offers an easy and beautiful way to publish articles.</li>
+      <li>For readers – it provides genuine thoughts and real experiences without clickbait or annoying ads.</li>
+      <li>For the community – it builds a sincere environment for conversation, collaboration, and growth.</li>
+    </ul>
+  </div>
+
+  <div class="third" data-aos="zoom-in">
+    <h1 class="text">Our mission</h1>
+    <p class="summary">
+      The core mission of StackNest is to bring together people who are hungry for knowledge, and to inspire them to write, learn, and share.<br>
+      We believe that through writing, we can better understand the world and each other.<br><br>
+    </p>
+  </div>
+
+  <div class="fourth" data-aos="zoom-in">
+    <h1 class="text">How to get started?</h1>
+    <p class="summary">
+      Simply sign up, read, write, and share.<br>
+      Your story might inspire, educate, or impact someone else in a way you never expected.<br><br>
+    </p>
+  </div>
+
+  <div class="fifth" data-aos="zoom-in">
+    <h1 class="text">Founder</h1>
+    <p class="summary">
+      This website was developed in Uzbekistan by Yusupov Muhammadyusuf.<br>
+      The site was officially launched on August 1, 2025.
+    </p>
+  </div>
+
+  <footer data-aos="fade-up">
+    <div class="logo">
+      {% if user.is_authenticated %}
+        <h1><a href="{% url 'article_list' user.username %}">StackNest</a></h1>
+      {% else %}
+        <h1><a href="{% url 'login' %}">StackNest</a></h1>
+      {% endif %}
+    </div>
+    <div class="footer_text">
+      <p>&copy; 2025 StackNest. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+
+  <script>
+    // AOS
+  AOS.init({
+    once: true
+  });
+  </script>
+    
+</body>
+</html>
