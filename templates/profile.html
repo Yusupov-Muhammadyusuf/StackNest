@@ -1,0 +1,159 @@
+{% load static %}
+{% block extrahead %}
+    {{ form.media }}
+{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+    {% block extra_css %}{% endblock extra_css %}
+    <title>StackNest</title>
+</head>
+<body>
+
+    <nav>
+        <div class="main_items">
+            {% if user.is_authenticated %}
+                <svg xmlns="http://www.w3.org/2000/svg" width="55" height="55" fill="currentColor" class="bi bi-stack" viewBox="0 0 16 16">
+                    <path d="m14.12 10.163 1.715.858c.22.11.22.424 0 .534L8.267 15.34a.6.6 0 0 1-.534 0L.165 11.555a.299.299 0 0 1 0-.534l1.716-.858 5.317 2.659c.505.252 1.1.252 1.604 0l5.317-2.66zM7.733.063a.6.6 0 0 1 .534 0l7.568 3.784a.3.3 0 0 1 0 .535L8.267 8.165a.6.6 0 0 1-.534 0L.165 4.382a.299.299 0 0 1 0-.535z"/>
+                    <path d="m14.12 6.576 1.715.858c.22.11.22.424 0 .534l-7.568 3.784a.6.6 0 0 1-.534 0L.165 7.968a.299.299 0 0 1 0-.534l1.716-.858 5.317 2.659c.505.252 1.1.252 1.604 0z"/>
+                </svg>
+            {% else %}
+                <a href="{% url 'base' %}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="55" height="55" fill="currentColor" class="bi bi-stack" viewBox="0 0 16 16">
+                        <path d="m14.12 10.163 1.715.858c.22.11.22.424 0 .534L8.267 15.34a.6.6 0 0 1-.534 0L.165 11.555a.299.299 0 0 1 0-.534l1.716-.858 5.317 2.659c.505.252 1.1.252 1.604 0l5.317-2.66zM7.733.063a.6.6 0 0 1 .534 0l7.568 3.784a.3.3 0 0 1 0 .535L8.267 8.165a.6.6 0 0 1-.534 0L.165 4.382a.299.299 0 0 1 0-.535z"/>
+                        <path d="m14.12 6.576 1.715.858c.22.11.22.424 0 .534l-7.568 3.784a.6.6 0 0 1-.534 0L.165 7.968a.299.299 0 0 1 0-.534l1.716-.858 5.317 2.659c.505.252 1.1.252 1.604 0z"/>
+                    </svg>
+                </a>
+            {% endif %}
+        </div>
+        <div class="links">
+            <ul class="nav_items">
+                {% if user.is_authenticated %}
+                    <li class="nav_item">
+                        <span><i class="bi bi-sticky"></i></span>
+                        <a href="{% url 'article_list' user.username %}">Articles</a>
+                    </li>
+                {% else %}
+                    <li class="nav_item">
+                        <span><i class="bi bi-sticky"></i></span>
+                        <a href="{% url 'login' %}">Articles</a>
+                    </li>
+                {% endif %}
+                <li class="nav_item">
+                    <span><i class="bi bi-info-circle"></i></span>
+                    <a href="{% url 'about' %}">About</a>
+                </li>
+            </ul>
+        </div>
+        <div class="search">
+            {% if user.is_authenticated %}
+                <a href="{% url 'article_new' %}" class="write"><i class="bi bi-pencil-square me-1"></i> Write</a>
+            {% else %}
+                <a href="{% url 'login' %}" class="write"><i class="bi bi-pencil-square me-1"></i> Write</a>
+            {% endif %}
+
+            <form method="get">
+                {% csrf_token %}
+                
+                <div class="search_input">
+                    <span id="search_icon"><i class="bi bi-search"></i></span>
+                    <input type="search" name="q" id="search" placeholder="Search" value="{{ request.GET.q }}">
+                </div>
+            </form>
+            <div class="nav_wrapper">
+                {% if user.profile.image %}
+                    <img src="{{ user.profile.image.url }}" alt="UserPhoto" class="nav_photo">
+                {% else %}
+                    <img src="{% static 'images/user.png' %}" alt="DefaultPhoto" class="nav_unknown_photo">
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Left panel -->
+        <div class="left_panel">
+            <div class="nick_image">
+                <div class="photo_wrapper">
+                    {% if user.profile.image %}
+                        <img src="{{ user.profile.image.url }}" alt="UserPhoto" class="main_photo">
+                    {% else %}
+                        <img src="{% static 'images/user.png' %}" alt="DefaultPhoto" class="unknown_photo">
+                    {% endif %}
+                </div>
+                <h1 class="nickname">{{ user.username }}</h1>
+            </div>
+            <div class="bio">
+                <p class="bio_text">{{ user.profile.about }}</p>
+            </div>
+            
+    
+            <a href="{% url 'edit_profile' %}" class="edit_btn">
+                <button type="submit">Edit profile</button>
+            </a>
+    
+            <div class="main_links">
+                {% if user.profile.location %}
+                    <div class="loc_block">
+                        <span><i class="bi bi-geo-alt"></i></span>
+                        <p>{{ user.profile.location }}</p>
+                    </div>
+                {% endif %}
+    
+                {% if user.profile.email %}
+                    <div class="block_link">
+                        <span><i class="bi bi-envelope"></i></span>
+                        <a href="mailto:{{ user.profile.email }}" target="_blank">{{ user.profile.email }}</a>
+                    </div>
+                {% endif %}
+    
+                {% if user.profile.link_1 %}
+                    <div class="block_link">
+                        <span><i class="bi bi-link-45deg"></i></span>
+                        <a href="{{ user.profile.link_1 }}" target="_blank">{{ user.profile.link_1 }}</a>
+                    </div>
+                {% endif %}
+    
+                {% if user.profile.link_2 %}
+                    <div class="block_link">
+                        <span><i class="bi bi-link-45deg"></i></span>
+                        <a href="{{ user.profile.link_2 }}" target="_blank">{{ user.profile.link_2 }}</a>
+                    </div>
+                {% endif %}
+    
+                {% if user.profile.link_3 %}
+                    <div class="block_link">
+                        <span><i class="bi bi-link-45deg"></i></span>
+                        <a href="{{ user.profile.link_3 }}" target="_blank">{{ user.profile.link_3 }}</a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Right panel -->
+        <div class="right_panel">
+            <h1 class="username_text">{{ user.username }}</h1>
+            {% block content %}
+            {% endblock content %}
+            <div class="new_card">
+                <div class="new_body">
+                    <span class="plus_text">Create a new article</span>
+                    <a href="{% url 'article_new' %}" class="plus">+</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.getElementById('search_icon').addEventListener('click', function() {
+            this.closest('form').submit();
+        })
+    </script>
+    
+</body>
+</html>
